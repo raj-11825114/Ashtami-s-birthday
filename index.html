@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>For Ashtami ❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+*{box-sizing:border-box}
+
+body{
+margin:0;
+font-family:"Comic Sans MS", system-ui, cursive;
+background:linear-gradient(135deg,#ffd6e7,#c7f0ff,#fff3b0,#d9ffd6);
+background-size:400% 400%;
+animation:bgMove 18s ease infinite;
+overflow:hidden;
+color:#333;
+}
+
+@keyframes bgMove{
+0%{background-position:0% 50%}
+50%{background-position:100% 50%}
+100%{background-position:0% 50%}
+}
+
+/* ===== SLIDES ===== */
+
+.slides{
+display:flex;
+width:100vw;
+height:100vh;
+transition:.7s;
+}
+
+.slide{
+min-width:100vw;
+height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+padding:clamp(16px,4vw,40px);
+text-align:center;
+overflow-y:auto;
+}
+
+/* ===== COVER ===== */
+
+.cover-slide{position:relative;overflow:hidden}
+
+.glass-card{
+background:rgba(255,255,255,.35);
+backdrop-filter:blur(18px);
+padding:clamp(20px,4vw,40px);
+border-radius:28px;
+box-shadow:0 30px 90px rgba(0,0,0,.25);
+max-width:560px;
+width:95%;
+z-index:2;
+}
+
+.vibepic{
+width:clamp(90px,22vw,140px);
+height:clamp(90px,22vw,140px);
+border-radius:50%;
+object-fit:cover;
+border:5px solid white;
+box-shadow:0 12px 34px rgba(0,0,0,.25);
+}
+
+.name-glow{
+background:linear-gradient(90deg,#ff4fa3,#6a5cff,#ff9f1c,#2ec4b6);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+animation:nameHue 4s linear infinite;
+}
+
+@keyframes nameHue{
+0%{filter:hue-rotate(0deg)}
+100%{filter:hue-rotate(360deg)}
+}
+
+.cover-sub{font-size:clamp(16px,2.5vw,18px);opacity:.85}
+
+.vibe-btn{
+margin-top:18px;
+padding:clamp(12px,2.5vw,16px) clamp(20px,4vw,30px);
+border-radius:22px;
+border:0;
+font-size:clamp(15px,2.5vw,18px);
+font-weight:700;
+cursor:pointer;
+color:white;
+background:linear-gradient(135deg,#ff4fa3,#ff9f1c);
+box-shadow:0 8px 0 rgba(0,0,0,.18);
+}
+
+.vibe-btn:active{
+transform:translateY(4px);
+box-shadow:0 3px 0 rgba(0,0,0,.18);
+}
+
+.cover-heart{
+position:absolute;
+bottom:-20px;
+font-size:26px;
+opacity:.7;
+animation:coverFloat 7s linear forwards;
+pointer-events:none;
+}
+
+@keyframes coverFloat{
+from{transform:translateY(0)}
+to{transform:translateY(-120vh)}
+}
+
+/* ===== LETTER ===== */
+
+.letter{
+background:
+linear-gradient(#fffef8,#fffef8),
+repeating-linear-gradient(0deg,rgba(0,0,0,.03) 0 2px,transparent 2px 6px);
+border-radius:18px;
+padding:clamp(20px,4vw,34px);
+max-width:820px;
+width:95%;
+box-shadow:0 25px 60px rgba(0,0,0,.25);
+text-align:left;
+font-size:clamp(16px,2.4vw,20px);
+line-height:1.7;
+position:relative;
+white-space:pre-wrap;
+}
+
+.letter:before{
+content:"";
+position:absolute;
+top:-14px;left:60px;
+width:140px;height:30px;
+background:#ffe4a3;
+border-radius:8px;
+transform:rotate(-5deg);
+}
+
+.letter:after{
+content:"📌";
+position:absolute;
+top:-18px;right:24px;
+font-size:28px;
+}
+
+.candle-glow{
+position:absolute;inset:-40px;
+background:radial-gradient(circle at 50% 0%, rgba(255,200,120,.35), transparent 60%);
+}
+
+.signature{margin-top:18px;font-size:28px;font-family:cursive;opacity:0}
+.signature.show{animation:sign 1.6s ease forwards}
+
+@keyframes sign{
+from{opacity:0;transform:translateY(10px)}
+to{opacity:1}
+}
+
+/* ===== PHOTOS ===== */
+
+.photo-box{
+background:white;
+padding:14px 14px 34px;
+border-radius:10px;
+box-shadow:0 14px 30px rgba(0,0,0,.25);
+position:relative;
+width:min(92vw,300px);
+aspect-ratio:9/16;
+overflow:hidden;
+}
+
+.photo-box.land{
+width:min(92vw,900px);
+aspect-ratio:16/9;
+height:auto;
+}
+
+.pslide{position:absolute;inset:0;opacity:0;transition:.6s}
+.pslide.active{opacity:1}
+
+.pslide img,.pslide video{
+width:100%;height:100%;object-fit:cover;border-radius:6px;
+}
+
+/* ===== NAV ===== */
+
+.nav{
+position:fixed;
+top:50%;
+transform:translateY(-50%);
+font-size:clamp(24px,4vw,34px);
+background:white;
+border-radius:50%;
+width:clamp(42px,6vw,54px);
+height:clamp(42px,6vw,54px);
+display:flex;align-items:center;justify-content:center;
+cursor:pointer;
+box-shadow:0 6px 18px rgba(0,0,0,.25);
+z-index:10;
+user-select:none;
+}
+
+.prev{left:10px}
+.next{right:10px}
+
+/* ===== REACTIONS ===== */
+
+@keyframes floatReact {
+from { transform: translateY(0) scale(.9); opacity:1; }
+to { transform: translateY(-520px) scale(1.2); opacity:0; }
+}
+
+.react-float{
+position:fixed;
+bottom:0;
+animation: floatReact 3.8s linear forwards;
+z-index:999;
+pointer-events:none;
+}
+</style>
+</head>
+
+<body>
+
+<div class="nav prev" onclick="go(-1)">‹</div>
+<div class="nav next" onclick="go(1)">›</div>
+
+<div class="slides" id="slides">
+
+<!-- COVER -->
+<div class="slide cover-slide">
+<div class="glass-card">
+<img src="cover.jpg" class="vibepic">
+<h1>For <span class="name-glow">Ashtami</span> 🎂</h1>
+<p class="cover-sub">A small digital surprise made with heart 💛</p>
+<button class="vibe-btn" onclick="go(1)">Open Your Surprise ✨</button>
+</div>
+</div>
+
+<!-- LETTER -->
+<div class="slide">
+<h1>A Small Letter (What You Mean To Me)💛</h1>
+<div class="letter">
+<div class="candle-glow"></div>
+<div id="letterText"></div>
+<div class="signature" id="sign">— Aryan</div>
+</div>
+</div>
+
+<!-- GIFT -->
+<div class="slide">
+<h1>There’s one more thing… 🎁</h1>
+<div id="giftBox" style="font-size:90px">🎁</div>
+<button class="vibe-btn" id="giftBtn" onclick="openGift()">Open Gift</button>
+<div id="giftMsg" style="display:none;background:white;padding:20px;border-radius:16px;">
+You’re my favorite person to bother, disturb, and still run to when I need comfort —
+thanks for not blocking me yet.
+</div>
+<button class="vibe-btn" id="confettiBtn" style="display:none" onclick="confettiBurst()">🎉 Pop Confetti</button>
+</div>
+
+<!-- FINAL -->
+<div class="slide">
+<h1>Happy Birthday ❤️</h1>
+<p id="typed"></p>
+</div>
+
+<!-- PORTRAIT -->
+<div class="slide">
+<h1>Memories 📸</h1>
+<div class="photo-box" id="box1">
+<div class="pslide active"><img src="p1.jpg"></div>
+<div class="pslide"><img src="p2.jpg"></div>
+<div class="pslide"><video src="v1.mp4" muted loop autoplay playsinline></video></div>
+<div class="pslide"><img src="p3.jpg"></div>
+<div class="pslide"><img src="p4.jpg"></div>
+<div class="pslide"><img src="p5.jpg"></div>
+<div class="pslide"><img src="p6.jpg"></div>
+<div class="pslide"><img src="p7.jpg"></div>
+<div class="pslide"><img src="p8.jpg"></div>
+</div>
+<button class="vibe-btn" onclick="movePhoto(1)">Next</button>
+</div>
+
+<!-- LAND -->
+<div class="slide">
+<h1>More Moments 🌄</h1>
+<div class="photo-box land" id="box2">
+<div class="pslide active"><img src="land1.jpg"></div>
+<div class="pslide"><img src="land2.jpg"></div>
+<div class="pslide"><img src="land3.jpg"></div>
+<div class="pslide"><img src="land4.jpg"></div>
+<div class="pslide"><img src="land5.jpg"></div>
+<div class="pslide"><img src="land6.jpg"></div>
+<div class="pslide"><img src="land7.jpg"></div>
+<div class="pslide"><img src="land8.jpg"></div>
+</div>
+<button class="vibe-btn" onclick="movePhotoL(1)">Next</button>
+</div>
+
+</div>
+
+<script>
+
+const slidesEl=document.getElementById("slides");
+let si=0;
+const total=document.querySelectorAll(".slide").length;
+
+function go(d){
+si=(si+d+total)%total;
+slidesEl.style.transform=`translateX(-${si*100}vw)`;
+}
+
+/* mobile swipe support */
+let startX=0;
+document.addEventListener("touchstart",e=>startX=e.touches[0].clientX);
+document.addEventListener("touchend",e=>{
+let dx=e.changedTouches[0].clientX-startX;
+if(Math.abs(dx)>60) go(dx<0?1:-1);
+});
+
+/* cover hearts */
+
+setInterval(()=>{
+if(si!==0) return;
+let h=document.createElement("div");
+h.className="cover-heart";
+h.innerText=["💖","💗","💓"][Math.floor(Math.random()*3)];
+h.style.left=Math.random()*100+"%";
+document.querySelector(".cover-slide").appendChild(h);
+setTimeout(()=>h.remove(),7000);
+},900);
+
+/* letter typewriter */
+
+const letterMsg = `~ You are not just my best friend — you are my family.
+~ You are the one person with whom I can share anything — personal, family, academic, even overthinking.
+~ You are my safe place.
+~ I can’t fully express what you mean to me in words.
+~ Everyone says may God bless you — but I feel blessed to have you as my best friend.
+~ Meeting you has been one of the most beautiful parts of my life.
+~ I never thought I would find a friend this special.
+~ I’m really happy that things between us are okay now.
+~ Our memories mean a lot to me.
+~ I truly pray you get love, success, happiness, and everything you wish for.
+~ You matter more than words can express.
+~ Thank you — truly — for being my friend.`;
+
+let li=0;
+function typeLetter(){
+let el=document.getElementById("letterText");
+if(li<letterMsg.length){
+el.innerHTML+=letterMsg.charAt(li++);
+setTimeout(typeLetter,38);
+}else{
+sign.classList.add("show");
+}}
+setTimeout(typeLetter,900);
+
+/* gift */
+
+function openGift(){
+giftBox.style.display="none";
+giftBtn.style.display="none";
+giftMsg.style.display="block";
+confettiBtn.style.display="inline-block";
+}
+
+function confettiBurst(){
+for(let i=0;i<40;i++){
+let c=document.createElement("div");
+c.innerText=["🎉","✨","🎊","💛"][Math.floor(Math.random()*4)];
+c.style.position="fixed";
+c.style.left=Math.random()*100+"%";
+c.style.top=Math.random()*100+"%";
+c.style.fontSize="26px";
+document.body.appendChild(c);
+setTimeout(()=>c.remove(),1200);
+}
+}
+
+/* birthday typewriter */
+
+const msg="Today is really special for you, so I’m praying you get everything you wish for — love, success, and lots of money — so you can enjoy all the chips, shawarma, and your favorite things — and I truly hope you achieve every dream you’re chasing.";
+let ti=0;
+function type(){
+let el=document.getElementById("typed");
+if(ti<msg.length){
+el.innerHTML+=msg.charAt(ti++);
+setTimeout(type,30);
+}}
+setTimeout(type,1400);
+
+/* reactions */
+
+const heartSet=["💖","💗","💓","💘","💝","❤️"];
+const laughSet=["😂","🤣","😆","😹"];
+
+function reactionBurst(type){
+for(let i=0;i<20;i++){
+let e=document.createElement("div");
+e.className="react-float";
+e.innerText = type==="heart"
+? heartSet[Math.floor(Math.random()*heartSet.length)]
+: laughSet[Math.floor(Math.random()*laughSet.length)];
+e.style.left=Math.random()*100+"%";
+e.style.fontSize=(22+Math.random()*18)+"px";
+document.body.appendChild(e);
+setTimeout(()=>e.remove(),3800);
+}
+}
+
+/* sliders */
+
+const p1=document.querySelectorAll("#box1 .pslide");
+let pi=0;
+function movePhoto(d){
+p1[pi].classList.remove("active");
+pi=(pi+d+p1.length)%p1.length;
+p1[pi].classList.add("active");
+pi<=2?reactionBurst("heart"):reactionBurst("laugh");
+}
+
+const p2=document.querySelectorAll("#box2 .pslide");
+let pi2=0;
+function movePhotoL(d){
+p2[pi2].classList.remove("active");
+pi2=(pi2+d+p2.length)%p2.length;
+p2[pi2].classList.add("active");
+pi2<=3?reactionBurst("heart"):reactionBurst("laugh");
+}
+
+</script>
+
+</body>
+</html>
+
+
